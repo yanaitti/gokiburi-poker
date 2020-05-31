@@ -244,7 +244,7 @@
           }
         )
         .done(function(data) {
-          // console.log(data)
+          console.log(data)
           $('#gStatus').text(data.status);
           playerPos = 0;
           // Applying List
@@ -266,11 +266,11 @@
             }
           }
 
-          if(data.candidatelists.length != $('#candidatelists').children('option').length+1){
+          if(data.candidatelists.length != $('#candidatelists').children('option').length){
             $('#candidatelists').children().remove();
-            for(var pIdx in data.players){
-              if(data.players[pIdx].playerid != cId){
-                $('#candidatelists').append('<option value="'+data.players[pIdx].playerid+'">'+data.players[pIdx].nickname+'</option>');
+            for(var pIdx in data.candidatelists){
+              if(data.candidatelists[pIdx].playerid != cId){
+                $('#candidatelists').append('<option value="'+data.candidatelists[pIdx].playerid+'">'+data.candidatelists[pIdx].nickname+'</option>');
               }
             }
           }
@@ -292,6 +292,13 @@
                   }
                 }
               }
+              //
+              // if(data.candidatelists.length != $('#candidatelists').children('option').length){
+              //   $('#candidatelists').children().remove();
+              //   for(var pIdx in data.candidatelists){
+              //     $('#candidatelists').append('<option value="'+data.candidatelists[pIdx].playerid+'">'+data.candidatelists[pIdx].nickname+'</option>');
+              //   }
+              // }
 
               $('#sec2').show();
 
@@ -302,10 +309,19 @@
               break;
             case 'sending':
 
-              if(data.candidatelists.length == 0){
+              if(data.candidatelists.length == 1){
                 $('#confirm').prop("disabled", true);
                 $('#send').prop("disabled", true);
               }
+              //
+              // if(data.candidatelists.length != $('#candidatelists').children('option').length){
+              //   $('#candidatelists').children().remove();
+              //   for(var pIdx in data.candidatelists){
+              //     if(data.candidatelists[pIdx].playerid != cId){
+              //       $('#candidatelists').append('<option value="'+data.candidatelists[pIdx].playerid+'">'+data.candidatelists[pIdx].nickname+'</option>');
+              //     }
+              //   }
+              // }
 
               $('#confirmedcard').text(cardtype[data.sending.lists.slice(-1)[0].typeid]);
 

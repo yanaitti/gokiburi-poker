@@ -48,6 +48,7 @@ def create_game(nickname=''):
 
     gameid = str(uuid.uuid4())
     game['gameid'] = gameid
+    player['holdcards'] = []
     player['playerid'] = gameid
     player['nickname'] = [nickname if nickname != '' else gameid][0]
     game['players'].append(player)
@@ -76,8 +77,9 @@ def join_game(gameid, nickname=''):
         player = {}
 
         playerid = str(uuid.uuid4())
+        player['holdcards'] = []
         player['playerid'] = playerid
-        player['nickname'] = [nickname if nickname != '' else gameid][0]
+        player['nickname'] = [nickname if nickname != '' else playerid][0]
         game['players'].append(player)
         app.logger.debug(player)
 
@@ -114,6 +116,10 @@ def start_game(gameid):
     routelist = copy.copy(game['players'])
     random.shuffle(routelist)
     game['routeid'] = routelist[0]['playerid']
+    # game['candidatelists'] = [player for player in game['candidatelists'] if player['playerid'] != game['routeid']]
+    for pIdx, player in enumerate(game['candidatelists']):
+        if player['playerid'] == game['routeid']:
+            game['candidatelists'].pop(pIdx)
 
     cache.set(gameid, game)
     return 'ok'
@@ -142,7 +148,6 @@ def choice_phase(gameid, playerid, sendplayerid, typeid, cardnum=999):
             player['holdcards'].pop(cIdx)
 
     game['routeid'] = sendplayerid
-    game['candidatelists'] = [player for player in game['candidatelists'] if player['playerid'] != playerid]
     game['candidatelists'] = [player for player in game['candidatelists'] if player['playerid'] != sendplayerid]
     game['status'] = 'sending'
 
