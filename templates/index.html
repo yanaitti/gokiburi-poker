@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ごきぶりポーカー / Kakerlakenpoker</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id='app2'>
+      <input id="cName_inp" placeholder="ニックネームを入力してください"><br/>
+      <br/>
+      <button id='createGame'>ゲームを作る(Make a Game)</button><br/>
+      Game ID: <span id='gId'></span><br/>
+      Game Status: <span id='gStatus'></span><br/>
+      <hr/>
+      <button id="joinGame">ゲームに参加する(Join the Game)</button><br/>
+      <input id="gId_inp" placeholder="GameIDを入力してください"><br/>
+      Your ID: <span id='cId'></span><br/>
+      Your Name: <span id='cName'></span><br/>
+      <hr/>
+      <h2>Member Applying</h2>
+      <span id='applyingList'></span><br/>
+      <div id='sec1' style='display:none'>
+        <button id="startGame">ゲームを始める(Let's start the Game)</button><br/><br/>
+        <hr/>
+      </div>
+      <div id='sec2' style='display:none'>
+        Your Cards:<br/>
+        <ul id='holdcards'></ul></br/>
+        Your Stacked Cards:<br/>
+        <table border='1'>
+          <tr>
+            <td>ごきぶり:<span id='stackcard0'></span></td>
+            <td>くも:<span id='stackcard1'></span></td>
+            <td>かめむし:<span id='stackcard2'></span></td>
+            <td>ねずみ:<span id='stackcard3'></span></td>
+            <td>さそり:<span id='stackcard4'></span></td>
+            <td>はえ:<span id='stackcard5'></span></td>
+            <td>こうもり:<span id='stackcard6'></span></td>
+            <td>かえる:<span id='stackcard7'></span></td>
+          </tr>
+        </table><br>
+        <hr/>
+      </div>
+      <div id='sec3' style='display:none'>
+        <select name='candidatelists' id='candidatelists'></select><br/>
+        <br/>
+        <select name='typelists' id='typelists'>
+          <option value=0>ごきぶり</option>
+          <option value=1>くも</option>
+          <option value=2>かめむし</option>
+          <option value=3>ねずみ</option>
+          <option value=4>さそり</option>
+          <option value=5>はえ</option>
+          <option value=6>こうもり</option>
+          <option value=7>かえる</option>
+        </select><br/>
+      </div>
+      <div id='sec4' style='display:none'>
+        Which card do you wanna send to someone?:<br/>
+        <button id="send">渡す(send)</button><br/>
+        上記から送りたいカードと、送り先を選択して「渡す」ボタンを押してください。<br/>
+        <hr/>
+      </div>
+      <div id='sec5' style='display:none'>
+        <button id="confirm">確認する(confirm)</button><br/>
+        カードを確認したい場合は、「確認する」ボタンを押してください。<br/>
+        カードを確認したら「渡す」しかできなくなります<br/>
+        <div id='sec6' style='display:none'>
+          <span id='confirmedcard'></span><br/>
+        </div>
+        <br/>
+        Do you wanna pass the card?:<br/>
+        <button id="send2">渡す(send)</button><br/>
+        上記から種類を指定し、送り先を選択して「渡す」ボタンを押してください。<br/>
+        <br/>
+        Do you wanna answer the card?:<br/>
+        <button id="answer">回答する(answer)</button><br/>
+        上記から種類を指定して「回答する」ボタンを押してください。<br/>
+        <hr/>
+      </div>
+      <br/>
+      <span id='message'></span><br/>
+    </div>
+
+    <script>
+    var timeout = 1000;
+    var timer = '';
+    var cardtype = {
+      0: 'ごきぶり',
+      1: 'くも',
+      2: 'かめむし',
+      3: 'ねぶみ',
+      4: 'さそり',
+      5: 'はえ',
+      6: 'こうもり',
+      7: 'かえる',
+    }
+
+    $(function() {
+      var gId = '';
+      var cId = '';
+
+      // Create Game
+      $('#createGame').click(function() {
+        $('#message').empty();
+        $.ajax('create' + '/' + $('#cName_inp').val(),
+          {
+            type: 'get',
+          }
+        )
+        .done(function(data) {
+          $('#gId').text(data);
+          $('#cId').text(data);
+          $('#cName').text($('#cName_inp').val());
+          $('#gStatus').text('waiting');
+          gId = data;
+          cId = data;
+          $('#sec1').show();
+          timer = setTimeout(status_check(gId, cId), timeout);
+        })
+        .fail(function() {
+          $('#message').text('エラーが発生しました');
+        });
+      });
+
+      // Join Game
+      $('#joinGame').click(function() {
+        $('#message').empty();
+        $.ajax($('#gId_inp').val() + '/join/' + $('#cName_inp').val(),
+          {
+            type: 'get',
+          }
+        )
+        .done(function(data) {
+          _tmp = data.split(' ,');
+          $('#cId').text(_tmp[0]);
+          $('#cName').text(_tmp[1]);
+          $('#gStatus').text(_tmp[2]);
+          gId = $('#gId_inp').val();
+          cId = _tmp[0];
+          timer = setTimeout(status_check(gId, cId), timeout)
+        })
+        .fail(function() {
+          $('#message').text('エラーが発生しました');
+        });
+      });
+
+      // Start Game
+      $('#startGame').click(function() {
+        $('#message').empty();
+        $.ajax(gId + '/start',
+          {
+            type: 'get',
+          }
+        )
+        .done(function(data) {
+          $('#sec5').css('display', 'none');
+          $('#sec6').css('display', 'none');
+        })
+        .fail(function() {
+          $('#message').text('エラーが発生しました');
+        });
+      });
+
+      // send the card
+      $('#send').click(function() {
+        $('#message').empty();
+        $.ajax(gId + '/' + cId + '/send/' + $('#candidatelists').val() + '/' + $('#typelists').val() + '/' + $('input[name="selcard"]:checked').val(),
+          {
+            type: 'get',
+          }
+        )
+        .done(function(data) {
+          $('#sec3').css('display', 'none');
+          $('#sec4').css('display', 'none');
+          $('#sec5').css('display', 'none');
+          $('#sec6').css('display', 'none');
+          $('#confirm').prop("disabled", false);
+        })
+        .fail(function() {
+          $('#message').text('エラーが発生しました');
+        });
+      });
+
+      // send the card
+      $('#send2').click(function() {
+        $('#message').empty();
+        $.ajax(gId + '/' + cId + '/send/' + $('#candidatelists').val() + '/' + $('#typelists').val(),
+          {
+            type: 'get',
+          }
+        )
+        .done(function(data) {
+          $('#sec3').css('display', 'none');
+          $('#sec4').css('display', 'none');
+          $('#sec5').css('display', 'none');
+          $('#sec6').css('display', 'none');
+          $('#confirm').prop("disabled", false);
+        })
+        .fail(function() {
+          $('#message').text('エラーが発生しました');
+        });
+      });
+
+      // confirm
+      $('#confirm').click(function() {
+        $('#answer').prop("disabled", true);
+        $('#confirm').prop("disabled", true);
+        $('#sec6').show();
+      });
+
+      // answer
+      $('#answer').click(function() {
+        $('#message').empty();
+        $.ajax(gId + '/' + cId + '/judge/' + $('#typelists').val(),
+          {
+            type: 'get',
+          }
+        )
+        .done(function(data) {
+          $('#sec3').css('display', 'none');
+          $('#sec4').css('display', 'none');
+          $('#sec5').css('display', 'none');
+          $('#sec6').css('display', 'none');
+          $('#confirm').prop("disabled", false);
+        })
+        .fail(function() {
+          $('#message').text('エラーが発生しました');
+        });
+      });
+
+
+
+    });
+
+    var status_check = function(gId, cId){
+      setTimeout(function(){
+        $('#message').empty();
+        // all status
+        $.getJSON(gId + '/status',
+          {
+            type: 'get',
+          }
+        )
+        .done(function(data) {
+          console.log(data)
+          $('#gStatus').text(data.status);
+          playerPos = 0;
+          // Applying List
+          $('#applyingList').empty();
+          for(var pIdx in data.players){
+            // console.log(data.players[pIdx])
+            $('#applyingList').append(data.players[pIdx].nickname + '(' + data.players[pIdx].playerid + ')' + ',');
+            if(cId == data.players[pIdx].playerid){
+              playerPos = pIdx;
+            }
+          }
+
+          if (data.players[playerPos].holdcards.length != $('#holdcards li').length){
+            // console.log('different');
+            $('#holdcards').empty();
+            for(var sIdx in data.players[playerPos].holdcards){
+              cardname = cardtype[data.players[playerPos].holdcards[sIdx] % 8];
+              $('#holdcards').append('<li><input type="radio" name="selcard" id="selcard[]" value="'+data.players[playerPos].holdcards[sIdx]+'">'+cardname+'</li>');
+            }
+          }
+
+          if(data.candidatelists.length != $('#candidatelists').children('option').length+1){
+            $('#candidatelists').children().remove();
+            for(var pIdx in data.players){
+              if(data.players[pIdx].playerid != cId){
+                $('#candidatelists').append('<option value="'+data.players[pIdx].playerid+'">'+data.players[pIdx].nickname+'</option>');
+              }
+            }
+          }
+
+          switch(data.status){
+            case 'waiting':
+              break;
+            case 'started':
+              $('#confirmedcard').empty();
+              $('#sec5').css('display', 'none');
+              $('#confirm').prop("disabled", false);
+              $('#send').prop("disabled", false);
+
+              for(var i = 0; i < 8; i++){
+                $('#stackcard'+i).empty();
+                for(var pIdx in data.players[playerPos].stacks){
+                  if(data.players[playerPos].stacks[pIdx] % 8 == i){
+                    $('#stackcard'+i).append('*');
+                  }
+                }
+              }
+
+              $('#sec2').show();
+
+              if(data.routeid == cId){
+                $('#sec3').show();
+                $('#sec4').show();
+              }
+              break;
+            case 'sending':
+
+              if(data.candidatelists.length == 0){
+                $('#confirm').prop("disabled", true);
+                $('#send').prop("disabled", true);
+              }
+
+              $('#confirmedcard').text(cardtype[data.sending.lists.slice(-1)[0].typeid]);
+
+              if(data.routeid == cId){
+                $('#sec3').show();
+                $('#sec5').show();
+              }
+              break;
+
+          }
+        })
+        .fail(function() {
+          $('#message').text('エラーが発生しました');
+        });
+        timer = setTimeout(status_check(gId, cId), timeout)
+      }, timeout);
+    }
+
+    </script>
+  </body>
+</html>
