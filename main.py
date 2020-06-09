@@ -185,6 +185,10 @@ def vote_phase(gameid, playerid, typeid):
 
     game['routeid'] = player['playerid']
     game['sending'] = {'cardnum': 999, 'lists': []}
+    game['candidatelists'] = copy.copy(game['players'])
+    for pIdx, player in enumerate(game['candidatelists']):
+        if player['playerid'] == game['routeid']:
+            game['candidatelists'].pop(pIdx)
     game['status'] = 'started'
 
     cache.set(gameid, game)

@@ -42,6 +42,31 @@
         </table><br>
         <hr/>
       </div>
+      <div id='sec4' style='display:none'>
+        Which card do you wanna send to someone?:<br/>
+        <button id="send">渡す(send)</button><br/>
+        下記から送りたいカードと、送り先を選択して「渡す」ボタンを押してください。<br/>
+        <hr/>
+      </div>
+      <div id='sec5' style='display:none'>
+        <b>「<span id='fromName'></span>」さん</b>から<b>「<span id='fromType'></span>」</b>としてカードが届きました<br/>
+        <br/>
+        <button id="confirm">確認する(confirm)</button><br/>
+        カードを確認したい場合は、「確認する」ボタンを押してください。<br/>
+        カードを確認したら「渡す」しかできなくなります<br/>
+        <div id='sec6' style='display:none'>
+        <b>「<span id='confirmedcard'></span><br/>」</b>でした。
+        </div>
+        <br/>
+        Do you wanna pass the card?:<br/>
+        <button id="send2">渡す(send)</button><br/>
+        下記から種類を指定し、送り先を選択して「渡す」ボタンを押してください。<br/>
+        <br/>
+        Do you wanna answer the card?:<br/>
+        <button id="answer">回答する(answer)</button><br/>
+        下記から種類を指定して「回答する」ボタンを押してください。<br/>
+        <hr/>
+      </div>
       <div id='sec3' style='display:none'>
         <select name='candidatelists' id='candidatelists'></select><br/>
         <br/>
@@ -55,29 +80,6 @@
           <option value=6>こうもり</option>
           <option value=7>かえる</option>
         </select><br/>
-      </div>
-      <div id='sec4' style='display:none'>
-        Which card do you wanna send to someone?:<br/>
-        <button id="send">渡す(send)</button><br/>
-        上記から送りたいカードと、送り先を選択して「渡す」ボタンを押してください。<br/>
-        <hr/>
-      </div>
-      <div id='sec5' style='display:none'>
-        <button id="confirm">確認する(confirm)</button><br/>
-        カードを確認したい場合は、「確認する」ボタンを押してください。<br/>
-        カードを確認したら「渡す」しかできなくなります<br/>
-        <div id='sec6' style='display:none'>
-          <span id='confirmedcard'></span><br/>
-        </div>
-        <br/>
-        Do you wanna pass the card?:<br/>
-        <button id="send2">渡す(send)</button><br/>
-        上記から種類を指定し、送り先を選択して「渡す」ボタンを押してください。<br/>
-        <br/>
-        Do you wanna answer the card?:<br/>
-        <button id="answer">回答する(answer)</button><br/>
-        上記から種類を指定して「回答する」ボタンを押してください。<br/>
-        <hr/>
       </div>
       <br/>
       <span id='message'></span><br/>
@@ -283,6 +285,7 @@
               $('#sec5').css('display', 'none');
               $('#confirm').prop("disabled", false);
               $('#send').prop("disabled", false);
+              $('#send2').prop("disabled", false);
 
               for(var i = 0; i < 8; i++){
                 $('#stackcard'+i).empty();
@@ -292,13 +295,6 @@
                   }
                 }
               }
-              //
-              // if(data.candidatelists.length != $('#candidatelists').children('option').length){
-              //   $('#candidatelists').children().remove();
-              //   for(var pIdx in data.candidatelists){
-              //     $('#candidatelists').append('<option value="'+data.candidatelists[pIdx].playerid+'">'+data.candidatelists[pIdx].nickname+'</option>');
-              //   }
-              // }
 
               $('#sec2').show();
 
@@ -309,21 +305,19 @@
               break;
             case 'sending':
 
-              if(data.candidatelists.length == 1){
+              if(data.candidatelists.length == 0){
                 $('#confirm').prop("disabled", true);
                 $('#send').prop("disabled", true);
+                $('#send2').prop("disabled", true);
               }
-              //
-              // if(data.candidatelists.length != $('#candidatelists').children('option').length){
-              //   $('#candidatelists').children().remove();
-              //   for(var pIdx in data.candidatelists){
-              //     if(data.candidatelists[pIdx].playerid != cId){
-              //       $('#candidatelists').append('<option value="'+data.candidatelists[pIdx].playerid+'">'+data.candidatelists[pIdx].nickname+'</option>');
-              //     }
-              //   }
-              // }
 
-              $('#confirmedcard').text(cardtype[data.sending.lists.slice(-1)[0].typeid]);
+              for(var pIdx in data.players){
+                if(data.players[pIdx].playerid == data.sending.lists.slice(-1)[0].from){
+                  $('#fromName').text(data.players[pIdx].nickname);
+                }
+              }
+              $('#fromType').text(cardtype[data.sending.lists.slice(-1)[0].typeid]);
+              $('#confirmedcard').text(cardtype[data.sending.cardnum % 8]);
 
               if(data.routeid == cId){
                 $('#sec3').show();
