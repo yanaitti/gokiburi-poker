@@ -30,6 +30,7 @@ typeid:
 
 cardnum:
  cardnum % 8
+
 '''
 
 @app.route('/')
@@ -156,14 +157,17 @@ def choice_phase(gameid, playerid, sendplayerid, typeid, cardnum=999):
 
 
 # vote phase
-@app.route('/<gameid>/<playerid>/judge/<int:typeid>')
-def vote_phase(gameid, playerid, typeid):
+@app.route('/<gameid>/<playerid>/judge/<int:judgeflg>')
+def vote_phase(gameid, playerid, judgeflg):
     game = cache.get(gameid)
 
     sending = game['sending']
     lastsendinfo = sending['lists'][-1]
 
-    if (game['sending']['cardnum'] % 8) == typeid:
+    if (game['sending']['cardnum'] % 8) == lastsendinfo['typeid'] and judgeflg == 0:
+        player = [player for player in game['players'] if player['playerid'] == lastsendinfo['from']][0]
+        message = 'せいかい'
+    elif (game['sending']['cardnum'] % 8) != lastsendinfo['typeid'] and judgeflg == 1:
         player = [player for player in game['players'] if player['playerid'] == lastsendinfo['from']][0]
         message = 'せいかい'
     else:

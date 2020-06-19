@@ -56,7 +56,7 @@
         カードを確認したい場合は、「確認する」ボタンを押してください。<br/>
         カードを確認したら「渡す」しかできなくなります<br/>
         <div id='sec6' style='display:none'>
-        <b>「<span id='confirmedcard'></span><br/>」</b>でした。
+        <b>「<span id='confirmedcard'></span>」</b>でした。
         </div>
         <br/>
         Do you wanna pass the card?:<br/>
@@ -64,8 +64,9 @@
         下記から種類を指定し、送り先を選択して「渡す」ボタンを押してください。<br/>
         <br/>
         Do you wanna answer the card?:<br/>
-        <button id="answer">回答する(answer)</button><br/>
-        下記から種類を指定して「回答する」ボタンを押してください。<br/>
+        「合っている」「間違っている」ボタンを選択して押してください。<br/>
+        <button id="correct">合っている(correct)</button>&nbsp;&nbsp;
+        <button id="wrong">間違っている(wrong)</button><br/>
         <hr/>
       </div>
       <div id='sec3' style='display:none'>
@@ -208,15 +209,16 @@
 
       // confirm
       $('#confirm').click(function() {
-        $('#answer').prop("disabled", true);
+        $('#correct').prop("disabled", true);
+        $('#wrong').prop("disabled", true);
         $('#confirm').prop("disabled", true);
         $('#sec6').show();
       });
 
       // answer
-      $('#answer').click(function() {
+      $('#correct').click(function() {
         $('#message').empty();
-        $.ajax(gId + '/' + cId + '/judge/' + $('#typelists').val(),
+        $.ajax(gId + '/' + cId + '/judge/0',
           {
             type: 'get',
           }
@@ -233,6 +235,24 @@
         });
       });
 
+      $('#wrong').click(function() {
+        $('#message').empty();
+        $.ajax(gId + '/' + cId + '/judge/1',
+          {
+            type: 'get',
+          }
+        )
+        .done(function(data) {
+          $('#sec3').css('display', 'none');
+          $('#sec4').css('display', 'none');
+          $('#sec5').css('display', 'none');
+          $('#sec6').css('display', 'none');
+          $('#confirm').prop("disabled", false);
+        })
+        .fail(function() {
+          $('#message').text('エラーが発生しました');
+        });
+      });
 
 
     });
@@ -287,6 +307,8 @@
               $('#confirm').prop("disabled", false);
               $('#send').prop("disabled", false);
               $('#send2').prop("disabled", false);
+              $('#correct').prop("disabled", false);
+              $('#wrong').prop("disabled", false);
 
               for(var i = 0; i < 8; i++){
                 $('#stackcard'+i).empty();
@@ -305,11 +327,16 @@
               }
               break;
             case 'sending':
-
-              if(data.candidatelists.length == 0){
-                $('#confirm').prop("disabled", true);
-                $('#send').prop("disabled", true);
-                $('#send2').prop("disabled", true);
+              if(data.routeid == cId){
+                $('#sec5').show();
+                if(data.candidatelists.length == 0){
+                  $('#confirm').prop("disabled", true);
+                  $('#send').prop("disabled", true);
+                  $('#send2').prop("disabled", true);
+                  $('#sec3').hide();
+                }else{
+                  $('#sec3').show();
+                }
               }
 
               for(var pIdx in data.players){
@@ -319,11 +346,6 @@
               }
               $('#fromType').text(cardtype[data.sending.lists.slice(-1)[0].typeid]);
               $('#confirmedcard').text(cardtype[data.sending.cardnum % 8]);
-
-              if(data.routeid == cId){
-                $('#sec3').show();
-                $('#sec5').show();
-              }
               break;
 
           }
