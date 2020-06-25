@@ -195,7 +195,7 @@ var status_check = function(gId, cId){
         $('#holdcards').empty();
         for(var sIdx in data.players[playerPos].holdcards){
           cardname = cardtype[data.players[playerPos].holdcards[sIdx] % 8];
-          $('#holdcards').append('<li><input type="radio" name="selcard" id="selcard[]" value="'+data.players[playerPos].holdcards[sIdx]+'">'+cardname+'</li>');
+          $('#holdcards').append('<li class="card' + data.players[playerPos].holdcards[sIdx] % 8 + '"><input type="radio" name="selcard" id="selcard[]" value="'+data.players[playerPos].holdcards[sIdx]+'">'+cardname+'</li>');
         }
       }
 
@@ -230,7 +230,7 @@ var status_check = function(gId, cId){
             }
             var rowul = $('<ul class="nav"></ul>').appendTo($('#playerinformation'));
             for(var cIdx in cardtype){
-              $('<li>' + cardtype[cIdx] + ':' + _stacks[cIdx] + '</li>').appendTo(rowul);
+              $('<li class="card' + cIdx + '">' + cardtype[cIdx] + ':' + _stacks[cIdx] + '</li>').appendTo(rowul);
             }
           }
 
@@ -242,6 +242,14 @@ var status_check = function(gId, cId){
           }
           break;
         case 'sending':
+          if(data.candidatelists.length != $('#candidatelists').children('option').length){
+            $('#candidatelists').children().remove();
+            for(var pIdx in data.candidatelists){
+              if(data.candidatelists[pIdx].playerid != cId){
+                $('#candidatelists').append('<option value="'+data.candidatelists[pIdx].playerid+'">'+data.candidatelists[pIdx].nickname+'</option>');
+              }
+            }
+          }
           if(data.routeid == cId){
             $('#sec5').show();
             if(data.candidatelists.length == 0){

@@ -1,5 +1,5 @@
 /*CSSの記述*/
-ul.nav  {
+/* ul.nav  {
   padding: 0px;
   display:table;
 }
@@ -7,4 +7,105 @@ ul.nav li{
   display:table-cell;
   vertical-align:middle;
   text-align:center;
+} */
+
+ul, ol {
+  padding: 0;
+  position: relative;
+}
+
+/* ごきぶり */
+ul li.card0, ol li.card0 {
+  display:table-cell;
+  color: #8f6363;
+  border-left: solid 6px #8f6363;/*左側の線*/
+  background: #d5bdbd;/*背景色*/
+  margin-bottom: 3px;/*下のバーとの余白*/
+   line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none!important;/*ポチ消す*/
+}
+
+/* くも */
+ul li.card1, ol li.card1 {
+  display:table-cell;
+  color: #8f8f8f;
+  border-left: solid 6px #8f8f8f;/*左側の線*/
+  background: #d5d5d5;/*背景色*/
+  margin-bottom: 3px;/*下のバーとの余白*/
+   line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none!important;/*ポチ消す*/
+}
+
+/* かめむし */
+ul li.card2, ol li.card2 {
+  display:table-cell;
+  color: #638f63;
+  border-left: solid 6px #638f63;/*左側の線*/
+  background: #bdd5bd;/*背景色*/
+  margin-bottom: 3px;/*下のバーとの余白*/
+   line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none!important;/*ポチ消す*/
+}
+
+/* ねずみ */
+ul li.card3, ol li.card3 {
+  display:table-cell;
+  color: #8f7563;
+  border-left: solid 6px #8f7563;/*左側の線*/
+  background: #d5c7bd;/*背景色*/
+  margin-bottom: 3px;/*下のバーとの余白*/
+   line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none!important;/*ポチ消す*/
+}
+
+/* さそり */
+ul li.card4, ol li.card4 {
+  display:table-cell;
+  color: #8f6379;
+  border-left: solid 6px #8f6379;/*左側の線*/
+  background: #d5bdc9;/*背景色*/
+  margin-bottom: 3px;/*下のバーとの余白*/
+   line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none!important;/*ポチ消す*/
+}
+
+/* はえ */
+ul li.card5, ol li.card5 {
+  display:table-cell;
+  color: #63778f;
+  border-left: solid 6px #63778f;/*左側の線*/
+  background: #bdc8d5;/*背景色*/
+  margin-bottom: 3px;/*下のバーとの余白*/
+   line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none!important;/*ポチ消す*/
+}
+
+/* こうもり */
+ul li.card6, ol li.card6 {
+  display:table-cell;
+  color: #79638f;
+  border-left: solid 6px #79638f;/*左側の線*/
+  background: #c9bdd5;/*背景色*/
+  margin-bottom: 3px;/*下のバーとの余白*/
+   line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none!important;/*ポチ消す*/
+}
+
+/* かえる */
+ul li.card7, ol li.card7 {
+  display:table-cell;
+  color: #638f8b;
+  border-left: solid 6px #638f8b;/*左側の線*/
+  background: #bdd5d3;/*背景色*/
+  margin-bottom: 3px;/*下のバーとの余白*/
+   line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none!important;/*ポチ消す*/
 }

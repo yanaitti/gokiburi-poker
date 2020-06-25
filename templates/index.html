@@ -29,7 +29,7 @@
       </div>
       <div id='sec2' style='display:none'>
         Your Cards:<br/>
-        <ul id='holdcards'></ul></br/>
+        <ul id='holdcards' class='holdcards'></ul></br/>
         Player's Stacked Cards:<br/>
         <div id='playerinformation'></div><br/>
         Routed cards Information:<br/>
@@ -45,6 +45,11 @@
       <div id='sec5' style='display:none'>
         <b>「<span id='fromName'></span>」さん</b>から<b>「<span id='fromType'></span>」</b>としてカードが届きました<br/>
         <br/>
+        Do you wanna answer the card?:<br/>
+        「合っている」「間違っている」ボタンを選択して押してください。<br/>
+        <button id="correct">合っている(correct)</button>&nbsp;&nbsp;
+        <button id="wrong">間違っている(wrong)</button><br/>
+        <br/>
         <button id="confirm">確認する(confirm)</button><br/>
         カードを確認したい場合は、「確認する」ボタンを押してください。<br/>
         カードを確認したら「渡す」しかできなくなります<br/>
@@ -55,11 +60,6 @@
         Do you wanna pass the card?:<br/>
         <button id="send2">渡す(send)</button><br/>
         下記から種類を指定し、送り先を選択して「渡す」ボタンを押してください。<br/>
-        <br/>
-        Do you wanna answer the card?:<br/>
-        「合っている」「間違っている」ボタンを選択して押してください。<br/>
-        <button id="correct">合っている(correct)</button>&nbsp;&nbsp;
-        <button id="wrong">間違っている(wrong)</button><br/>
         <hr/>
       </div>
       <div id='sec3' style='display:none'>
