@@ -220,15 +220,6 @@ var status_check = function(gId, cId){
           $('#correct').prop("disabled", false);
           $('#wrong').prop("disabled", false);
 
-          // for(var i = 0; i < 8; i++){
-          //   $('#stackcard'+i).empty();
-          //   for(var pIdx in data.players[playerPos].stacks){
-          //     if(data.players[playerPos].stacks[pIdx] % 8 == i){
-          //       $('#stackcard'+i).append('*');
-          //     }
-          //   }
-          // }
-
           $('#playerinformation').empty();
           for(var pIdx in data.players){
             $('#playerinformation').append(data.players[pIdx].nickname + ':<br/>');
