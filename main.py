@@ -10,6 +10,13 @@ import numpy as np
 
 app = Flask(__name__)
 
+
+'''
+相手のカードを見れるようにする
+手札のソート
+'''
+
+
 @app.context_processor
 def override_url_for():
     return dict(url_for=dated_url_for)

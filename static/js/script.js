@@ -220,12 +220,26 @@ var status_check = function(gId, cId){
           $('#correct').prop("disabled", false);
           $('#wrong').prop("disabled", false);
 
-          for(var i = 0; i < 8; i++){
-            $('#stackcard'+i).empty();
-            for(var pIdx in data.players[playerPos].stacks){
-              if(data.players[playerPos].stacks[pIdx] % 8 == i){
-                $('#stackcard'+i).append('*');
-              }
+          // for(var i = 0; i < 8; i++){
+          //   $('#stackcard'+i).empty();
+          //   for(var pIdx in data.players[playerPos].stacks){
+          //     if(data.players[playerPos].stacks[pIdx] % 8 == i){
+          //       $('#stackcard'+i).append('*');
+          //     }
+          //   }
+          // }
+
+          $('#playerinformation').empty();
+          for(var pIdx in data.players){
+            $('#playerinformation').append(data.players[pIdx].nickname + ':<br/>');
+            _stacks = Array(8);
+            _stacks.fill('');
+            for(var sIdx in data.players[pIdx].stacks){
+              _stacks[(data.players[pIdx].stacks[sIdx] % 8)] += '*';
+            }
+            var rowul = $('<ul class="nav"></ul>').appendTo($('#playerinformation'));
+            for(var cIdx in cardtype){
+              $('<li>' + cardtype[cIdx] + ':' + _stacks[cIdx] + '</li>').appendTo(rowul);
             }
           }
 
