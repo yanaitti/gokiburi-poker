@@ -10,19 +10,21 @@
   <body>
     このゲームは２～６人用となっています。<br/>
     <div id='app2'>
-      <input id="cName_inp" placeholder="ニックネームを入力してください"><br/>
-      <br/>
-      <button id='createGame'>ゲームを作る(Make a Game)</button><br/>
-      Game ID: <span id='gId'></span><br/>
-      Game Status: <span id='gStatus'></span><br/>
-      <hr/>
-      <button id="joinGame">ゲームに参加する(Join the Game)</button><br/>
-      <input id="gId_inp" placeholder="GameIDを入力してください"><br/>
-      Your ID: <span id='cId'></span><br/>
-      Your Name: <span id='cName'></span><br/>
-      <hr/>
-      <h2>Member Applying</h2>
-      <span id='applyingList'></span><br/>
+      <div id='entry' style='display:none'>
+        <input id="cName_inp" placeholder="ニックネームを入力してください"><br/>
+        <br/>
+        <button id='createGame'>ゲームを作る(Make a Game)</button><br/>
+        Game ID: <span id='gId'></span><br/>
+        Game Status: <span id='gStatus'></span><br/>
+        <hr/>
+        <button id="joinGame">ゲームに参加する(Join the Game)</button><br/>
+        <input id="gId_inp" placeholder="GameIDを入力してください"><br/>
+        Your ID: <span id='cId'></span><br/>
+        Your Name: <span id='cName'></span><br/>
+        <hr/>
+        <h2>Member Applying</h2>
+        <span id='applyingList'></span><br/>
+      </div>
       <div id='sec1' style='display:none'>
         <button id="startGame">ゲームを始める(Let's start the Game)</button><br/><br/>
         <hr/>

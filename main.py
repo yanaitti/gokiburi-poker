@@ -134,7 +134,6 @@ def start_game(gameid):
     for player in game['players']:
         player['holdcards'] = []
         player['stacks'] = []
-        player['stacktypes'] = []
 
     # Distribute each card to players
     idx = 0
@@ -209,9 +208,9 @@ def vote_phase(gameid, playerid, judgeflg):
     player['stacks'].append(sending['cardnum'])
 
     stacks = np.array(player['stacks'])
-    stacks = stacks % 8
-    player['stacktypes'] = stacks.tolist()
-    c = collections.Counter(stacks)
+    # stacks = stacks % 8
+    # player['stacktypes'] = stacks.tolist()
+    c = collections.Counter(stacks % 8)
 
     if c.most_common()[0] == 4:
         game['loser'] = player['playerid']

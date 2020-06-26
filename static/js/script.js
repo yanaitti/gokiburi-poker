@@ -14,6 +14,7 @@ var cardtype = {
 $(function() {
   var gId = '';
   var cId = '';
+  $('#entry').show();
 
   // Create Game
   $('#createGame').click(function() {
@@ -203,6 +204,7 @@ var status_check = function(gId, cId){
         case 'waiting':
           break;
         case 'started':
+          $('#entry').hide();
           if(data.candidatelists.length != $('#candidatelists').children('option').length){
             $('#candidatelists').children().remove();
             for(var pIdx in data.candidatelists){
@@ -276,6 +278,8 @@ var status_check = function(gId, cId){
 
           $('#fromType').text(cardtype[data.sending.lists.slice(-1)[0].typeid]);
           $('#confirmedcard').text(cardtype[data.sending.cardnum % 8]);
+          break;
+        case 'end':
           break;
 
       }
