@@ -10,6 +10,8 @@ ul.nav li{
 } */
 
 ul, ol {
+  display: table;
+  width: 100%;
   padding: 0;
   position: relative;
 }
@@ -24,6 +26,7 @@ ul li.card0, ol li.card0 {
    line-height: 1.5;
   padding: 0.5em;
   list-style-type: none!important;/*ポチ消す*/
+  float: left;
 }
 
 /* くも */
@@ -36,6 +39,7 @@ ul li.card1, ol li.card1 {
    line-height: 1.5;
   padding: 0.5em;
   list-style-type: none!important;/*ポチ消す*/
+  float: left;
 }
 
 /* かめむし */
@@ -48,6 +52,7 @@ ul li.card2, ol li.card2 {
    line-height: 1.5;
   padding: 0.5em;
   list-style-type: none!important;/*ポチ消す*/
+  float: left;
 }
 
 /* ねずみ */
@@ -60,6 +65,7 @@ ul li.card3, ol li.card3 {
    line-height: 1.5;
   padding: 0.5em;
   list-style-type: none!important;/*ポチ消す*/
+  float: left;
 }
 
 /* さそり */
@@ -72,6 +78,7 @@ ul li.card4, ol li.card4 {
    line-height: 1.5;
   padding: 0.5em;
   list-style-type: none!important;/*ポチ消す*/
+  float: left;
 }
 
 /* はえ */
@@ -84,6 +91,7 @@ ul li.card5, ol li.card5 {
    line-height: 1.5;
   padding: 0.5em;
   list-style-type: none!important;/*ポチ消す*/
+  float: left;
 }
 
 /* こうもり */
@@ -96,6 +104,7 @@ ul li.card6, ol li.card6 {
    line-height: 1.5;
   padding: 0.5em;
   list-style-type: none!important;/*ポチ消す*/
+  float: left;
 }
 
 /* かえる */
@@ -108,4 +117,5 @@ ul li.card7, ol li.card7 {
    line-height: 1.5;
   padding: 0.5em;
   list-style-type: none!important;/*ポチ消す*/
+  float: left;
 }
