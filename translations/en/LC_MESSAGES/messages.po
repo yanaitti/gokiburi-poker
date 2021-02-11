@@ -1,0 +1,103 @@
+# English translations for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-02-07 22:07+0900\n"
+"PO-Revision-Date: 2021-02-07 22:10+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: templates/index.html:12 templates/index.html:84
+msgid "type_1"
+msgstr "cockroach"
+
+#: templates/index.html:13 templates/index.html:85
+msgid "type_2"
+msgstr "spider"
+
+#: templates/index.html:14 templates/index.html:86
+msgid "type_3"
+msgstr "stink bug"
+
+#: templates/index.html:15 templates/index.html:87
+msgid "type_4"
+msgstr "mouse"
+
+#: templates/index.html:16 templates/index.html:88
+msgid "type_5"
+msgstr "scorpion"
+
+#: templates/index.html:17 templates/index.html:89
+msgid "type_6"
+msgstr "fly"
+
+#: templates/index.html:18 templates/index.html:90
+msgid "type_7"
+msgstr "bat"
+
+#: templates/index.html:19 templates/index.html:91
+msgid "type_8"
+msgstr "frog"
+
+#: templates/index.html:55
+msgid "txt_explain1"
+msgstr "Which card do you send to next player?"
+
+#: templates/index.html:56 templates/index.html:76
+msgid "btn_send"
+msgstr "Send"
+
+#: templates/index.html:57
+msgid "txt_explain2"
+msgstr "Select player to pass the card from below lists, and then push 'send' button."
+
+#: templates/index.html:61
+msgid "txt_sendgmessage"
+msgstr " said to you. this card is "
+
+#: templates/index.html:63
+msgid "txt_explain3"
+msgstr "Do you want to answer the card is?"
+
+#: templates/index.html:64
+msgid "txt_explain4"
+msgstr "push the 'correct' or 'wrong' button."
+
+#: templates/index.html:65
+msgid "btn_correct"
+msgstr "correct"
+
+#: templates/index.html:66
+msgid "btn_wrong"
+msgstr "wrong"
+
+#: templates/index.html:68
+msgid "btn_confirm"
+msgstr "confirn"
+
+#: templates/index.html:69
+msgid "txt_explain5"
+msgstr "If you want to confirm the card, push 'confirm' button."
+
+#: templates/index.html:70
+msgid "txt_explain6"
+msgstr "But, if you confirmed it, you can choice 'send' only."
+
+#: templates/index.html:75
+msgid "txt_explain7"
+msgstr "Which card do you choice?"
+
+#: templates/index.html:77
+msgid "txt_explain8"
+msgstr "You can select a card from the below lists, select the player you want to send it to, and push 'send' button."
