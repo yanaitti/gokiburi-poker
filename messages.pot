@@ -19,84 +19,84 @@ msgstr ""
 
 #: templates/index.html:12 templates/index.html:84
 msgid "type_1"
-msgstr "ã”ãã¶ã‚Š"
+msgstr "‚²‚«‚Ô‚è"
 
 #: templates/index.html:13 templates/index.html:85
 msgid "type_2"
-msgstr "ãã‚‚"
+msgstr "‚­‚à"
 
 #: templates/index.html:14 templates/index.html:86
 msgid "type_3"
-msgstr "ã‹ã‚ã‚€ã—"
+msgstr "‚©‚ß‚Ş‚µ"
 
 #: templates/index.html:15 templates/index.html:87
 msgid "type_4"
-msgstr "ã­ãšã¿"
+msgstr "‚Ë‚¸‚İ"
 
 #: templates/index.html:16 templates/index.html:88
 msgid "type_5"
-msgstr "ã•ãã‚Š"
+msgstr "‚³‚»‚è"
 
 #: templates/index.html:17 templates/index.html:89
 msgid "type_6"
-msgstr "ã¯ãˆ"
+msgstr "‚Í‚¦"
 
 #: templates/index.html:18 templates/index.html:90
 msgid "type_7"
-msgstr "ã“ã†ã‚‚ã‚Š"
+msgstr "‚±‚¤‚à‚è"
 
 #: templates/index.html:19 templates/index.html:91
 msgid "type_8"
-msgstr "ã‹ãˆã‚‹"
+msgstr "‚©‚¦‚é"
 
 #: templates/index.html:55
 msgid "txt_explain1"
-msgstr "ã©ã®ã‚«ãƒ¼ãƒ‰ã‚’èª°ã«æ¸¡ã—ã¾ã™ã‹?"
+msgstr "‚Ç‚ÌƒJ[ƒh‚ğ’N‚É“n‚µ‚Ü‚·‚©?"
 
 #: templates/index.html:56 templates/index.html:76
 msgid "btn_send"
-msgstr "æ¸¡ã™"
+msgstr "“n‚·"
 
 #: templates/index.html:57
 msgid "txt_explain2"
-msgstr "ä¸‹è¨˜ã‹ã‚‰é€ã‚ŠãŸã„ã‚«ãƒ¼ãƒ‰ã¨ã€é€ã‚Šå…ˆã‚’é¸æŠã—ã¦ã€Œæ¸¡ã™ã€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚"
+msgstr "‰º‹L‚©‚ç‘—‚è‚½‚¢ƒJ[ƒh‚ÆA‘—‚èæ‚ğ‘I‘ğ‚µ‚Äu“n‚·vƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B"
 
 #: templates/index.html:61
 msgid "txt_sendgmessage"
-msgstr "ã•ã‚“ã¯æ¬¡ã®ã‚«ãƒ¼ãƒ‰ã¨ã—ã¦é€ã‚Šã¾ã—ãŸ"
+msgstr "‚³‚ñ‚ÍŸ‚ÌƒJ[ƒh‚Æ‚µ‚Ä‘—‚è‚Ü‚µ‚½"
 
 #: templates/index.html:63
 msgid "txt_explain3"
-msgstr "ã‚ãªãŸã¯ã‚«ãƒ¼ãƒ‰ã‚’ç­”ãˆã¾ã™ã‹?"
+msgstr "‚ ‚È‚½‚ÍƒJ[ƒh‚ğ“š‚¦‚Ü‚·‚©?"
 
 #: templates/index.html:64
 msgid "txt_explain4"
-msgstr "ã€Œåˆã£ã¦ã„ã‚‹ã€ã€Œé–“é•ã£ã¦ã„ã‚‹ã€ãƒœã‚¿ãƒ³ã‚’é¸æŠã—ã¦æŠ¼ã—ã¦ãã ã•ã„ã€‚"
+msgstr "u‡‚Á‚Ä‚¢‚évuŠÔˆá‚Á‚Ä‚¢‚évƒ{ƒ^ƒ“‚ğ‘I‘ğ‚µ‚Ä‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B"
 
 #: templates/index.html:65
 msgid "btn_correct"
-msgstr "åˆã£ã¦ã„ã‚‹"
+msgstr "‡‚Á‚Ä‚¢‚é"
 
 #: templates/index.html:66
 msgid "btn_wrong"
-msgstr "é–“é•ã£ã¦ã„ã‚‹"
+msgstr "ŠÔˆá‚Á‚Ä‚¢‚é"
 
 #: templates/index.html:68
 msgid "btn_confirm"
-msgstr "ç¢ºèªã™ã‚‹"
+msgstr "Šm”F‚·‚é"
 
 #: templates/index.html:69
 msgid "txt_explain5"
-msgstr "ã‚«ãƒ¼ãƒ‰ã‚’ç¢ºèªã—ãŸã„å ´åˆã¯ã€ã€Œç¢ºèªã™ã‚‹ã€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚"
+msgstr "ƒJ[ƒh‚ğŠm”F‚µ‚½‚¢ê‡‚ÍAuŠm”F‚·‚évƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B"
 
 #: templates/index.html:70
 msgid "txt_explain6"
-msgstr "ã‚«ãƒ¼ãƒ‰ã‚’ç¢ºèªã—ãŸã‚‰ã€Œæ¸¡ã™ã€ã—ã‹ã§ããªããªã‚Šã¾ã™"
+msgstr "ƒJ[ƒh‚ğŠm”F‚µ‚½‚çu“n‚·v‚µ‚©‚Å‚«‚È‚­‚È‚è‚Ü‚·"
 
 #: templates/index.html:75
 msgid "txt_explain7"
-msgstr "ã©ã®ã‚«ãƒ¼ãƒ‰ã‚’é€ã‚Šã¾ã™ã‹?"
+msgstr "‚Ç‚ÌƒJ[ƒh‚ğ‘—‚è‚Ü‚·‚©?"
 
 #: templates/index.html:77
 msgid "txt_explain8"
-msgstr "ä¸‹è¨˜ã‹ã‚‰ç¨®é¡ã‚’æŒ‡å®šã—ã€é€ã‚Šå…ˆã‚’é¸æŠã—ã¦ã€Œæ¸¡ã™ã€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚"
+msgstr "‰º‹L‚©‚çí—Ş‚ğw’è‚µA‘—‚èæ‚ğ‘I‘ğ‚µ‚Äu“n‚·vƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B"
