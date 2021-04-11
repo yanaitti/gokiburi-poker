@@ -6,10 +6,20 @@ $(function() {
   var cId = '';
   $('#entry').show();
 
+  $('#clickCopy').click(function(){
+    var text = $('#uriWgId').val();
+    var clipboard = $('<textarea></textarea>');
+    clipboard.text(text);
+    $('body').append(clipboard);
+    clipboard.select();
+    document.execCommand('copy');
+    clipboard.remove();
+  });
+
   // Create Game
   $('#createGame').click(function() {
     $('#message').empty();
-    $.ajax('create' + '/' + $('#cName_inp').val(),
+    $.ajax('/create' + '/' + $('#cName_inp').val(),
       {
         type: 'get',
       }
@@ -19,6 +29,7 @@ $(function() {
       $('#cId').text(data);
       $('#cName').text($('#cName_inp').val());
       $('#gStatus').text('waiting');
+      $('#uriWgId').val(location.href + data + '/join');
       gId = data;
       cId = data;
       $('#sec1').show();
@@ -32,7 +43,7 @@ $(function() {
   // Join Game
   $('#joinGame').click(function() {
     $('#message').empty();
-    $.ajax($('#gId_inp').val() + '/join/' + $('#cName_inp').val(),
+    $.ajax('/' + $('#gId_inp').val() + '/join/' + $('#cName_inp').val(),
       {
         type: 'get',
       }
@@ -54,7 +65,7 @@ $(function() {
   // Start Game
   $('#startGame').click(function() {
     $('#message').empty();
-    $.ajax(gId + '/start',
+    $.ajax('/' + gId + '/start',
       {
         type: 'get',
       }
@@ -71,7 +82,7 @@ $(function() {
   // send the card
   $('#send').click(function() {
     $('#message').empty();
-    $.ajax(gId + '/' + cId + '/send/' + $('#candidatelists').val() + '/' + $('#typelists').val() + '/' + $('input[name="selcard"]:checked').val(),
+    $.ajax('/' + gId + '/' + cId + '/send/' + $('#candidatelists').val() + '/' + $('#typelists').val() + '/' + $('input[name="selcard"]:checked').val(),
       {
         type: 'get',
       }
@@ -91,7 +102,7 @@ $(function() {
   // send the card
   $('#send2').click(function() {
     $('#message').empty();
-    $.ajax(gId + '/' + cId + '/send/' + $('#candidatelists').val() + '/' + $('#typelists').val(),
+    $.ajax('/' + gId + '/' + cId + '/send/' + $('#candidatelists').val() + '/' + $('#typelists').val(),
       {
         type: 'get',
       }
@@ -119,7 +130,7 @@ $(function() {
   // answer
   $('#correct').click(function() {
     $('#message').empty();
-    $.ajax(gId + '/' + cId + '/judge/0',
+    $.ajax('/' + gId + '/' + cId + '/judge/0',
       {
         type: 'get',
       }
@@ -138,7 +149,7 @@ $(function() {
 
   $('#wrong').click(function() {
     $('#message').empty();
-    $.ajax(gId + '/' + cId + '/judge/1',
+    $.ajax('/' + gId + '/' + cId + '/judge/1',
       {
         type: 'get',
       }
@@ -162,7 +173,7 @@ var status_check = function(gId, cId){
   setTimeout(function(){
     $('#message').empty();
     // all status
-    $.getJSON(gId + '/status',
+    $.getJSON('/' + gId + '/status',
       {
         type: 'get',
       }
